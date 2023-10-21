@@ -1,2 +1,2 @@
-# OurPath
-(in progress)
+# Jupad
+To practice 10 key 
