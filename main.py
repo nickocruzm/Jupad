@@ -1,8 +1,11 @@
 import random as rand
+import threading
+import sys
 from datetime import datetime
 import time
 
 score = 0
+GAMEOVER = False
 
 def timeElapsed(t0):
     t = datetime.now()
@@ -21,31 +24,25 @@ def generateTest():
         
     return test
 
+def end_game():
+    global GAMEOVER 
+    GAMEOVER = True
+
+timer = threading.Timer(10.0, end_game)
 
 if __name__ == '__main__':
     userInput = ""
     test = ""
-    
-    #t0 = time.gmtime(time.gmtime())
-    start_time = time.time()
-    end_time = start_time + 50
-    
+    timer.start()
 
-    
-    
-    while(0 <= (end_time - time.time()) ):
+    while(not GAMEOVER):
         test = generateTest()
-        userInput = input(f'{test} ; \t {end_time - time.time()}\n')
+        userInput = input(f'{test} ;\n')
         if(userInput == test):
             score += 1
-    
-    print("score: ", score)
 
 
-    # t1 = time.time()
-    # print("score: ",score," ", (t1 - t0), " seconds")
+    print(f"Score: {score}")
+
         
-    
-
-
     
