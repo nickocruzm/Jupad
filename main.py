@@ -6,10 +6,7 @@ import time
 
 score = 0
 GAMEOVER = False
-
-def timeElapsed(t0):
-    t = datetime.now()
-    return( t.second - t0.second)
+SECONDS = 60
 
 def generateTest():
     i = 0
@@ -21,23 +18,23 @@ def generateTest():
         digit = rand.randint(0,10)
         test += str(digit)
         i += 1
-        
     return test
 
 def end_game():
     global GAMEOVER 
     GAMEOVER = True
 
-timer = threading.Timer(10.0, end_game)
 
 if __name__ == '__main__':
     userInput = ""
     test = ""
+
+    timer = threading.Timer(SECONDS, end_game)
     timer.start()
 
     while(not GAMEOVER):
         test = generateTest()
-        userInput = input(f'{test} ;\n')
+        userInput = input(f'{test};\n')
         if(userInput == test):
             score += 1
 
